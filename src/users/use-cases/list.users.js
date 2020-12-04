@@ -7,6 +7,7 @@ const { InvalidPropertyError } = require('../../helpers/Errors')
 const makeListUsers = ({ usersDb }) =>
   async function listUsers({ id } = {}) {
     if (id) {
+      console.log({ id })
       const user = await usersDb.findById({ id })
       if (!user) {
         throw new InvalidPropertyError('User does not exist.')
