@@ -1,3 +1,6 @@
 node_modules
 .env
-beginner-cloud-functions-e3e0d75bdca0.json
+beginner-cloud-functions-774881dfbf12.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore

@@ -1,7 +1,7 @@
 const makeDeleteUser = ({ removeUser }) =>
   async function deleteUser(req, res) {
     try {
-      const { id } = req.params
+      const { id } = req.query
       const user = await removeUser({ id })
       return res.status(200).json({
         status: true,

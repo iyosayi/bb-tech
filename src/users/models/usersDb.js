@@ -19,13 +19,15 @@ const makeUsersDb = ({ makeDb, hashPassword, createToken }) => {
     const db = await makeDb()
     const updated = await db
       .collection('users')
-      .updateOne({ _id }, { $set: { ...details } })
+      .updateOne({ _id: db.makeId(_id) }, { $set: { ...details } })
     return updated.modifiedCount > 0 ? { id: _id, ...details } : null
   }
 
   async function remove({ id: _id }) {
     const db = await makeDb()
-    const deleted = await db.collection('users').deleteOne({ _id })
+    const deleted = await db
+      .collection('users')
+      .deleteOne({ _id: db.makeId(_id) })
     return deleted.deletedCount
   }
 
@@ -40,7 +42,7 @@ const makeUsersDb = ({ makeDb, hashPassword, createToken }) => {
 
   async function findById({ id: _id }) {
     const db = await makeDb()
-    const result = await db.collection('users').findOne({ _id })
+    const result = await db.collection('users').findOne({ _id: db.makeId(_id) })
     return result
   }
 

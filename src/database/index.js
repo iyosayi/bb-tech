@@ -1,8 +1,9 @@
 /* eslint-disable wrap-iife */
 require('dotenv').config()
-const { MongoClient } = require('mongodb')
+const { MongoClient, ObjectID } = require('mongodb')
 
 const url = process.env.DB_URL
+const dbName = process.env.DB_NAME
 
 const client = new MongoClient(url, {
   useNewUrlParser: true,
@@ -13,7 +14,14 @@ async function makeDb() {
   if (!client.isConnected()) {
     await client.connect()
   }
-  return client.db('bb-tech')
+  const db = client.db(dbName)
+  // eslint-disable-next-line no-use-before-define
+  db.makeId = makeIdFromString
+  return db
+}
+
+function makeIdFromString(id) {
+  return new ObjectID(id)
 }
 
 ;(async function setupDB() {

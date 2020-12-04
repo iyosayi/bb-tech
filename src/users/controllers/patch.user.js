@@ -2,7 +2,7 @@ const makePatchUser = ({ editUser }) =>
   async function patchUser(req, res) {
     try {
       const { ...userInfo } = req.body
-      const toEdit = { ...userInfo, id: req.params.id }
+      const toEdit = { ...userInfo, id: req.query.id }
       const user = await editUser(toEdit)
       return res.status(200).json({
         status: true,

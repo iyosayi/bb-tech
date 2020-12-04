@@ -1,8 +1,8 @@
 const makeGetUser = ({ listUsers }) =>
   async function getUser(req, res) {
     try {
-      const { id } = req.body
-      const user = id ? await listUsers({ id }) : await listUsers()
+      const { id } = req.query
+      const user = await listUsers({ id })
       return res.status(200).json({
         status: true,
         message: 'Users',

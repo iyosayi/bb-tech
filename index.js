@@ -18,8 +18,7 @@ const { postLogin, getUser } = require('./src/auth/controllers')
 exports.userApi = (req, res) => {
   switch (req.method) {
     case 'GET':
-      return res.send('hello')
-    // return getUsers(req, res)
+      return getUsers(req, res)
     case 'POST':
       return postUser(req, res)
     case 'PATCH':
@@ -41,5 +40,19 @@ exports.authApi = (req, res) => {
       return res.json({
         message: 'Please enter email and password to be authenticated.',
       })
+  }
+}
+
+exports.helloHttp = (req, res) => {
+  switch (req.method) {
+    case 'GET':
+      res.status(200).send('Hello World!')
+      break
+    case 'PUT':
+      res.status(403).send('Forbidden!')
+      break
+    default:
+      res.status(405).send({ error: 'Something blew up!' })
+      break
   }
 }
