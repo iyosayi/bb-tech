@@ -14,7 +14,6 @@ I make use of JsonWebTokens for authentication
 
 The `base url` for the `CRUD` methods is `https://us-central1-beginner-cloud-functions.cloudfunctions.net/userApi`
 \
-The `base url` for the `Authentication` is `https://us-central1-beginner-cloud-functions.cloudfunctions.net/authApi`
 
 Requests can be made through `Postman`
 
@@ -41,3 +40,14 @@ A `x-auth-token` header with the token value must also be present to be able to 
 To delete a user, the required parameter is the `id` of the user.
 \
 A `x-auth-token` header with the token value must also be present to be able to update a user
+
+### Authentication
+
+The `base url` for the `Authentication` is `https://us-central1-beginner-cloud-functions.cloudfunctions.net/authApi`
+
+In order to login, the required field values are
+
+1. email
+2. password
+
+To get the details of a logged in user, a `x-auth-token` header with the token value must be provided.
